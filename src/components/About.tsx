@@ -1,70 +1,74 @@
 import { motion } from 'framer-motion';
-import SectionHeader from './ui/SectionHeader';
-import StatCard from './ui/StatCard';
 
-const stats = [
-  { label: 'years', value: '3+' },
-  { label: 'primary', value: 'Java · Angular · AWS' },
-  { label: 'specialty', value: 'IBM Maximo' },
-  { label: 'languages', value: 'AR · FR · EN' },
-];
+const specs = [
+  { label: 'Primary Stack', value: 'Java · Spring Boot · Angular',      color: 'var(--accent)' },
+  { label: 'Specialty',     value: 'IBM Maximo · WebSphere · OSLC',     color: 'var(--accent-2)' },
+  { label: 'Cloud',         value: 'AWS · Docker · Terraform',           color: 'var(--accent)' },
+  { label: 'CI/CD',         value: 'GitLab · Azure DevOps · GH Actions', color: 'var(--accent-2)' },
+  { label: 'Databases',     value: 'PostgreSQL · MySQL · MongoDB',        color: 'var(--accent)' },
+  { label: 'Soft Skills',   value: 'Technico-functional consulting',      color: 'var(--fg-muted)' },
+] as const;
 
 export default function About() {
   return (
-    <section
-      id="about"
-      className="relative z-10 py-32 md:py-40"
-      style={{ background: 'transparent' }}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <SectionHeader
-          num="01 / 06"
-          path="~/src/components/About.tsx"
-          label="about"
-          title={
-            <>
-              Building digital /{' '}
-              <span style={{ color: 'var(--accent-2)', fontWeight: 400 }}>
-                systems that ship.
-              </span>
-            </>
-          }
-        />
+    <section id="about" style={{ padding: '120px 40px', position: 'relative' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto' }}>
 
-        <div className="grid grid-cols-12 gap-8 md:gap-12">
-          {/* Left: paragraphs */}
+        {/* Section label */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontFamily: 'var(--font-mono)', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.25em' }}>
+          <span style={{ color: 'var(--accent)' }}>03 /</span>
+          <div style={{ width: 48, height: 1, background: 'var(--fg-dim)' }} />
+          <span style={{ color: 'var(--fg-muted)' }}>About</span>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '5fr 4fr', gap: 64, marginTop: 48 }}>
+          {/* Left */}
           <motion.div
-            className="col-span-12 lg:col-span-7 space-y-5"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <p className="font-body text-base md:text-lg leading-relaxed" style={{ color: 'var(--fg)', opacity: 0.82 }}>
-              I'm a backend-leaning full-stack engineer with deep roots in enterprise Java and IBM Maximo.
-              Over 3+ years at Sinorfi I've built MBO customizations, authored OSLC and REST integrations,
-              tuned WebSphere production environments, and shipped CI/CD pipelines that keep deployments boring —
-              which is exactly how they should be.
+            <h2 style={{
+              fontFamily: 'var(--font-display)', fontSize: 'clamp(36px,4.5vw,60px)',
+              fontWeight: 700, lineHeight: 1.05, letterSpacing: '-0.03em', color: 'var(--fg)', marginBottom: 28,
+            }}>
+              The engineer<br />behind the{' '}
+              <span style={{ color: 'var(--accent)' }}>integrations.</span>
+            </h2>
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: 18, lineHeight: 1.8, color: 'var(--fg)', opacity: 0.8, marginBottom: 20 }}>
+              Backend-leaning full-stack engineer based in Tunis, specializing in enterprise system
+              integration. Three years shipping IBM Maximo customizations, OSLC APIs, and cloud-native
+              Java services used in production by industrial companies.
             </p>
-            <p className="font-body text-base md:text-lg leading-relaxed" style={{ color: 'var(--fg)', opacity: 0.82 }}>
-              When I'm not in Maximo territory, I'm studying Cloud & Cybersecurity at{' '}
-              <span className="font-mono" style={{ color: 'var(--accent-2)' }}>ESPRIT</span>{' '}
-              and expanding my cloud-native toolkit with AWS, Terraform, and microservices patterns — all while
-              keeping things practical for the real-world client work we do at{' '}
-              <span className="font-mono" style={{ color: 'var(--accent)' }}>Sinorfi</span>.
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: 18, lineHeight: 1.8, color: 'var(--fg)', opacity: 0.8 }}>
+              Currently at <strong style={{ color: 'var(--accent)', fontWeight: 600 }}>Sinorfi</strong> as
+              Full-Stack Engineer and Maximo Technical Consultant, while finishing an Engineering degree
+              in Cloud &amp; Cybersecurity at ESPRIT. I'm the person teams reach for when the
+              integration is brittle, the deployment is fragile, or the API spec doesn't match reality.
             </p>
           </motion.div>
 
-          {/* Right: stat cards */}
+          {/* Right: spec list */}
           <motion.div
-            className="col-span-12 lg:col-span-4 lg:col-start-9 flex flex-col gap-3"
+            style={{ display: 'flex', flexDirection: 'column', gap: 3 }}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.15 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
             viewport={{ once: true }}
           >
-            {stats.map(s => (
-              <StatCard key={s.label} label={s.label} value={s.value} />
+            {specs.map(({ label, value, color }) => (
+              <div
+                key={label}
+                style={{
+                  display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                  padding: '14px 18px', background: 'var(--surface)', border: '1px solid var(--border)',
+                  fontFamily: 'var(--font-mono)',
+                }}
+              >
+                <span style={{ fontSize: 10, color: 'var(--fg-muted)', letterSpacing: '0.2em', textTransform: 'uppercase' }}>{label}</span>
+                <span style={{ fontSize: 12, color, textAlign: 'right', maxWidth: '55%' }}>{value}</span>
+              </div>
             ))}
           </motion.div>
         </div>

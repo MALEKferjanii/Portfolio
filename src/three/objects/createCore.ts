@@ -3,7 +3,7 @@ import { vertexShader } from '../shaders/vertex.glsl';
 import { fragmentShader } from '../shaders/fragment.glsl';
 
 export function createCore(isMobile: boolean): THREE.Mesh {
-  const detail = isMobile ? 40 : 80;
+  const detail = isMobile ? 16 : 40;
   const geo = new THREE.IcosahedronGeometry(1.3, detail);
 
   const mat = new THREE.ShaderMaterial({

@@ -1,0 +1,42 @@
+{
+  "name": "Malek Ferjani",
+  "role": "IBM Maximo Technical Consultant | Java Integration & Development",
+  "location": "Tunis, Tunisia",
+  "email": "ferjenimelek42@gmail.com",
+  "phone": "+216 50 532 972",
+  "linkedin": "https://www.linkedin.com/in/malekferjani/",
+  "website": "https://cloud.tail07adef.ts.net/",
+  "cv": "/Malek_Ferjani_resume.pdf",
+  "languages": ["Arabic · Native", "French · B2", "English · B2"],
+  "summary": "IBM Maximo technical consultant and full-stack developer with 3+ years of experience. I turn business requirements into Maximo customizations, Java services and connected applications. My experience spans a SUEZ France assignment, internal product development at Sinorfi, and independently built cloud and Kubernetes platforms.",
+  "strengths": [
+    {"title": "Understand the business.", "label": "Client communication", "body": "I work with users to understand their processes, write clear specifications, and use proofs of concept to validate technical choices.", "proof": "User workshops and functional design on the SUEZ France assignment."},
+    {"title": "Connect complex systems.", "label": "Technical depth", "body": "I combine Maximo internals with Java and modern web development to connect assets, work orders and business applications.", "proof": "MBO extensions, Automation Scripts, OSLC/REST APIs and MIF channels."},
+    {"title": "Own the whole path.", "label": "Autonomy & curiosity", "body": "I build applications and the infrastructure around them, with practical attention to deployment, security and monitoring.", "proof": "Internal DevOps work, a multi-node Kubernetes platform and my own K3s server."}
+  ],
+  "experience": [
+    {"company": "Sinorfi", "title": "Full-Stack & DevOps Developer", "period": "2025 – Present", "context": "Internal role · Web, mobile & infrastructure", "bullets": ["Design and develop internal web and mobile solutions with Java Spring Boot, Angular and Flutter.", "Build CI/CD workflows, containerize applications with Docker and Kubernetes, and automate infrastructure."]},
+    {"company": "SUEZ France assignment", "title": "N3 Technical Consultant · IBM Maximo", "period": "2023 – 2025", "context": "Industrial water utility · Agile team across Tunisia and France", "bullets": ["Gathered client requirements in user workshops, modeled business processes, and wrote functional and technical specifications. Built proofs of concept to validate implementation choices.", "Extended Java MBO classes, calculated attributes and validation/save logic. Implemented Automation Scripts in Jython and JavaScript, lifecycle workflows, security groups and application customizations.", "Connected Maximo to ERP and third-party applications through OSLC, secure REST APIs and MIF channels for assets, work orders and locations.", "Developed an intervention scheduling application with Spring Boot, Angular and React, integrated with Maximo through OSLC/REST.", "Worked on CI/CD with GitLab CI, Jenkins and Azure DevOps; automated environments with Shell, Docker, Kubernetes, Terraform and Ansible, and deployed/administered the suite on OpenShift.", "Created BIRT reports and Cognos Analytics dashboards to track maintenance KPIs."]}
+  ],
+  "projects": [
+    {"id": "oslc", "title": "Connecting maintenance teams to Maximo", "category": "Enterprise", "status": "Professional work", "summary": "An intervention scheduling application connected to IBM Maximo, bringing maintenance workflows into a third-party web interface.", "contribution": "Developed the Spring Boot, Angular and React application and integrated it through OSLC/REST. The wider assignment included MBO customization and MIF integrations.", "purpose": "Make Maximo data available to an application built around intervention scheduling.", "tags": ["Java", "Spring Boot", "Angular / React", "OSLC / REST"]},
+    {"id": "openstack", "title": "A Kubernetes platform, from the ground up", "category": "Cloud & DevOps", "status": "Personal project", "summary": "A multi-node Kubernetes platform on OpenStack, provisioned with Heat and Ansible and equipped for security and observability.", "contribution": "Provisioned the cluster end to end. Integrated Vault, cert-manager, Falco, Trivy and kube-bench, with Prometheus and Grafana for monitoring.", "purpose": "Practice infrastructure ownership across provisioning, secrets, security checks and monitoring.", "tags": ["OpenStack Heat", "Ansible", "Kubernetes", "Vault", "Prometheus"]},
+    {"id": "k3s", "title": "My own server. My own operations.", "category": "Cloud & DevOps", "status": "Personal project", "summary": "A self-hosted K3s home server for websites and local language-model inference with Ollama and Qwen.", "contribution": "Built and administer the personal cluster, using K3s, Docker and Nginx to host applications alongside local AI workloads.", "purpose": "Keep learning through the practical work of running and maintaining my own services.", "tags": ["K3s", "Docker", "Nginx", "Ollama / Qwen"]},
+    {"id": "securegitops", "title": "Security built into the delivery workflow", "category": "Cloud & DevOps", "status": "In progress", "summary": "SecureGitOps: a personal DevSecOps platform exploring infrastructure as code, secure CI/CD and policy-driven Kubernetes delivery.", "contribution": "Developing the platform with Terraform, LocalStack, ArgoCD and Kyverno/OPA. The scope includes GitOps, service mesh, security policies and observability.", "purpose": "Explore repeatable delivery with security policies and operational visibility built into the platform.", "tags": ["Terraform", "LocalStack", "ArgoCD", "Kyverno / OPA"]}
+  ],
+  "skills": [
+    {"title": "Maximo & enterprise integration", "context": "Client assignment", "items": ["Maximo 7.6 / MAS", "MBO / Java extensions", "Automation Scripts / Jython", "OSLC / MIF / REST / SOAP", "Workflow & Application Designer", "BIRT / Cognos Analytics", "OpenShift"]},
+    {"title": "Application development", "context": "Professional & project work", "items": ["Java / Spring Boot", "Angular / React / TypeScript", "Flutter", "Python / Shell / SQL", "PostgreSQL / Oracle / MySQL", "Microservices", "Windows / Linux"]},
+    {"title": "Cloud, delivery & operations", "context": "Professional work & personal platforms", "items": ["Docker / Kubernetes / Helm", "Terraform / Ansible", "GitLab CI / Jenkins / Azure DevOps", "AWS / OpenStack", "ArgoCD / Vault", "Prometheus / Grafana"]}
+  ],
+  "education": [
+    {"degree": "Engineering Degree · Cloud & Cybersecurity", "school": "ESPRIT, Tunis", "period": "2023 – 2027", "status": "In progress · Expected 2027"},
+    {"degree": "Bachelor’s Degree · Networks & Telecommunications", "school": "ISITCOM, Hammam Sousse", "period": "2020 – 2023", "status": "Completed"}
+  ],
+  "credentials": [
+    "IoT – Maximo 7.6 New Features; Maximo Introduction and Overview · December 2023",
+    "Cognos Analytics – Technical Sales Intermediate; Sales Foundation · June 2024",
+    "Planning Analytics – Technical Sales Intermediate; Sales Foundation · July 2024",
+    "Maximo Application Suite – Sales Foundation; Maximo Visual Inspection – Technical Sales Intermediate · Listed expiry: July 2026"
+  ]
+}

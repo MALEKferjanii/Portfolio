@@ -3,7 +3,16 @@
     "allow": [
       "Bash(npm create *)",
       "Bash(npm install *)",
-      "Bash(npx tailwindcss *)"
+      "Bash(npx tailwindcss *)",
+      "PowerShell(Out-Null *)",
+      "PowerShell(Get-ChildItem -Recurse \"C:\\\\Users\\\\Malek.Ferjani\\\\.claude\\\\projects\\\\C--personal-portfolio\\\\2b9ddf3d-29a9-4256-a8db-62148ccb7ac0\\\\tool-results\\\\extracted2\\\\portfolio\" | ForEach-Object { $_.FullName + \" \\(\" + $_.Length + \"\\)\" })",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(mkdir -p /mnt/c/Users/Malek.Ferjani/.claude/projects/D--personal-portfolio/a8b56c94-bbdc-4840-954e-b4f868010903/tool-results/extracted)",
+      "Bash(tar -xzf /mnt/c/Users/Malek.Ferjani/.claude/projects/D--personal-portfolio/a8b56c94-bbdc-4840-954e-b4f868010903/tool-results/webfetch-1779390530361-48q8cg.bin -C /mnt/c/Users/Malek.Ferjani/.claude/projects/D--personal-portfolio/a8b56c94-bbdc-4840-954e-b4f868010903/tool-results/extracted)",
+      "Read(//mnt/c/Users/Malek.Ferjani/.claude/projects/D--personal-portfolio/a8b56c94-bbdc-4840-954e-b4f868010903/tool-results/**)",
+      "Bash(curl -s http://localhost:5174)",
+      "PowerShell(Start-Process \"http://localhost:5174\")"
     ]
   }
 }

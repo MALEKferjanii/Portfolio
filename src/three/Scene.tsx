@@ -6,7 +6,7 @@ import { createRings } from './objects/createRings';
 import { createParticles } from './objects/createParticles';
 import { createNetworkLines } from './objects/createNetworkLines';
 
-export default function Scene() {
+export default function Scene({ animated = true }: { animated?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -14,11 +14,14 @@ export default function Scene() {
     if (!canvas) return;
 
     const isMobile = window.innerWidth < 768;
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReduced = !animated;
 
     // Renderer
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    const context = canvas.getContext('webgl2', { antialias: true, alpha: true });
+    if (!context) { canvas.dataset.renderer = 'unavailable'; return; }
+    const renderer = new THREE.WebGLRenderer({ canvas, context, antialias: true, alpha: true });
+    canvas.dataset.renderer = 'webgl2';
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 0);
 
@@ -92,6 +95,7 @@ export default function Scene() {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
+      if (prefersReduced) renderer.render(scene, camera);
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -100,7 +104,8 @@ export default function Scene() {
 
     // Animation loop
     const animate = () => {
-      rafId = requestAnimationFrame(animate);
+      if (!prefersReduced) rafId = requestAnimationFrame(animate);
+      if (document.hidden) return;
       t += 0.01;
 
       mx += (targetMx - mx) * 0.05;
@@ -170,13 +175,13 @@ export default function Scene() {
       }
       renderer.dispose();
     };
-  }, []);
+  }, [animated]);
 
   return (
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="fixed inset-0 z-0 pointer-events-none"
+      className="three-scene fixed inset-0 z-0 pointer-events-none"
       style={{ width: '100vw', height: '100vh' }}
     />
   );

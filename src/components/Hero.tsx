@@ -1,169 +1,26 @@
-import { motion } from 'framer-motion';
-
+import { ArrowUpRight, ArrowDown, Download, FileText, Workflow, Code2, Server } from 'lucide-react';
+import profile from '../data/profile.json';
+import { openCv } from './cvEvents';
 export default function Hero() {
-  return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center pt-14"
-      style={{ background: 'transparent' }}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-10 w-full">
-        <div className="grid grid-cols-12 gap-6 items-center">
-
-          {/* Left column: text */}
-          <div className="col-span-12 lg:col-span-7 flex flex-col gap-6 py-16 lg:py-0">
-
-            {/* Breadcrumb bar */}
-            <div className="font-mono text-xs flex items-center gap-3 flex-wrap">
-              <span className="text-muted">~/src/components/</span>
-              <span className="text-fg">Hero.tsx</span>
-              <div className="h-px flex-1 bg-white/5 hidden sm:block" />
-              <span className="flex items-center gap-1.5">
-                <span
-                  className="w-1.5 h-1.5 rounded-full"
-                  style={{ background: 'var(--status)', boxShadow: '0 0 5px var(--status)' }}
-                />
-                <span style={{ color: 'var(--status)' }}>● main</span>
-              </span>
-            </div>
-
-            {/* Prompt */}
-            <div className="font-mono text-sm flex items-center gap-2">
-              <span className="text-accent">➜</span>
-              <span className="text-muted">~</span>
-              <span className="text-fg ml-1">whoami</span>
-            </div>
-
-            {/* Preamble */}
-            <div className="font-mono text-xs tracking-[0.18em] uppercase">
-              <span className="text-muted">HI — I'M </span>
-              <span className="text-fg">MALEK FERJANI</span>
-            </div>
-
-            {/* Headline */}
-            <div>
-              <h1
-                className="font-display font-medium leading-[0.92]"
-                style={{
-                  fontSize: 'clamp(3.5rem, 8.5vw, 8.5vw)',
-                  letterSpacing: '-0.035em',
-                }}
-              >
-                <span className="block text-fg">Full-Stack</span>
-                <span
-                  className="block"
-                  style={{ color: 'var(--accent-2)', fontWeight: 400 }}
-                >
-                  Engineer.
-                </span>
-              </h1>
-            </div>
-
-            {/* Lead */}
-            <p
-              className="font-body text-base md:text-lg leading-relaxed max-w-[48ch]"
-              style={{ opacity: 0.82, color: 'var(--fg)' }}
-            >
-              Building Java backends, OSLC integrations, and cloud-native services around{' '}
-              <span className="font-mono" style={{ color: 'var(--accent-2)' }}>
-                IBM Maximo
-              </span>
-              . 3+ years shipping production systems for enterprise clients from Tunis.
-            </p>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-3 pt-2">
-              <a
-                href="#projects"
-                className="font-mono text-sm px-5 py-2.5 rounded transition-all min-h-[44px] flex items-center"
-                style={{
-                  background: 'var(--accent)',
-                  color: '#0A0908',
-                  fontWeight: 500,
-                }}
-              >
-                $ view_work
-              </a>
-              <a
-                href="#contact"
-                className="font-mono text-sm px-5 py-2.5 rounded transition-all min-h-[44px] flex items-center"
-                style={{
-                  border: '1px solid var(--border-hi)',
-                  color: 'var(--fg)',
-                }}
-              >
-                $ init_contact
-              </a>
-            </div>
-          </div>
-
-          {/* Right column: code panel */}
-          <div className="col-span-12 lg:col-span-5 flex justify-center lg:justify-end">
-            <div
-              className="w-full max-w-md rounded-lg overflow-hidden"
-              style={{
-                background: 'rgba(28,25,22,0.65)',
-                backdropFilter: 'blur(8px)',
-                WebkitBackdropFilter: 'blur(8px)',
-                border: '1px solid var(--border)',
-              }}
-            >
-              {/* Panel top bar */}
-              <div
-                className="flex items-center justify-between px-4 py-3"
-                style={{ borderBottom: '1px solid var(--border)' }}
-              >
-                <div className="flex items-center gap-1.5">
-                  <span className="w-3 h-3 rounded-full bg-red-500/70" />
-                  <span className="w-3 h-3 rounded-full bg-yellow-400/70" />
-                  <span className="w-3 h-3 rounded-full" style={{ background: 'var(--status)', opacity: 0.7 }} />
-                </div>
-                <span className="font-mono text-xs text-muted">const malek.ts</span>
-              </div>
-
-              {/* Code body */}
-              <div className="px-0 py-4">
-                {[
-                  { n: 1,  content: <><span style={{color:'var(--accent-2)'}}>const</span> <span style={{color:'var(--accent)'}}>malek</span> <span className="text-fg">= {'{'}</span></> },
-                  { n: 2,  content: <><span className="text-dim pl-0 select-none" /><span className="ml-4" style={{color:'var(--accent)'}}>role</span><span className="text-fg">: </span><span className="text-fg">"Full-Stack Engineer"</span><span className="text-muted">,</span></> },
-                  { n: 3,  content: <><span className="ml-4" style={{color:'var(--accent)'}}>focus</span><span className="text-fg">: [</span><span className="text-fg">"Java"</span><span className="text-muted">, </span><span className="text-fg">"Maximo"</span><span className="text-muted">, </span><span className="text-fg">"AWS"</span><span className="text-fg">]</span><span className="text-muted">,</span></> },
-                  { n: 4,  content: <><span className="ml-4" style={{color:'var(--accent)'}}>location</span><span className="text-fg">: </span><span className="text-fg">"Tunis, TN"</span><span className="text-muted">,</span></> },
-                  { n: 5,  content: <><span className="ml-4" style={{color:'var(--accent)'}}>timezone</span><span className="text-fg">: </span><span className="text-fg">"UTC+1"</span><span className="text-muted">,</span></> },
-                  { n: 6,  content: <><span className="ml-4" style={{color:'var(--accent)'}}>status</span><span className="text-fg">: </span><span style={{color:'var(--status)'}}>"available"</span><span className="text-muted">,</span></> },
-                  { n: 7,  content: <><span className="ml-4" style={{color:'var(--accent)'}}>coffee</span><span className="text-fg">: </span><span style={{color:'var(--accent-2)'}}>Infinity</span><span className="text-muted">,</span></> },
-                  { n: 8,  content: <span className="text-fg">{'}'}</span> },
-                ].map(({ n, content }) => (
-                  <div key={n} className="flex items-start gap-0 px-3 py-0.5 hover:bg-white/[0.02] transition-colors">
-                    <span
-                      className="font-mono text-xs w-7 text-right flex-shrink-0 select-none leading-6"
-                      style={{ color: 'var(--fg-dim)' }}
-                    >
-                      {n}
-                    </span>
-                    <span className="font-mono text-sm ml-4 leading-6">{content}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="flex flex-col items-center gap-3 pb-8 mt-8 lg:mt-0">
-          <span className="font-mono text-xs text-muted tracking-[0.3em]">SCROLL TO EXPLORE</span>
-          <div
-            className="w-px h-12 relative overflow-hidden rounded"
-            style={{ background: 'var(--border)' }}
-          >
-            <motion.div
-              className="absolute top-0 left-0 right-0 rounded"
-              style={{ background: 'var(--accent)', height: '40%' }}
-              animate={{ y: ['0%', '160%'] }}
-              transition={{ duration: 1.8, ease: 'easeInOut', repeat: Infinity }}
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  return <section id="top" className="hero container">
+    <div className="hero-topline"><span><i className="status-dot" /> IBM MAXIMO · JAVA · CLOUD & DEVOPS</span><span>TUNIS, TN / UTC+1</span></div>
+    <div className="hero-grid"><div className="hero-copy">
+      <p className="eyebrow">Hello, I’m Malek Ferjani</p>
+      <h1>Complex systems.<br /><span>Clear solutions.</span></h1>
+      <p className="hero-role">IBM Maximo consultant.<br />Java developer. Infrastructure builder.</p>
+      <p className="hero-description">I turn business needs into connected applications, from Maximo integrations for a water utility to the cloud platforms I build and run myself.</p>
+      <div className="actions"><a className="button primary" href="#projects">Explore my work <ArrowUpRight size={18} /></a><button className="button secondary" onClick={openCv}><FileText size={17} /> View CV <span className="file-type">PDF</span></button><a className="button secondary" href={profile.cv} download aria-label="Download CV"><Download size={17} /> Download</a></div>
+      <a className="hero-contact" href="#contact">Have a Maximo, Java or platform challenge? Let’s talk <span>↗</span></a>
+    </div>
+    <aside className="system-card" aria-label="My approach: understand, integrate, operate">
+      <div className="system-top"><span>FROM BUSINESS NEED TO RUNNING SYSTEM</span><span>+</span></div>
+      <div className="orbital" aria-hidden="true"><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="orbit orbit-three" /><div className="orb-core">mf<span>.</span></div><span className="orbit-point p1" /><span className="orbit-point p2" /></div>
+      <div className="system-steps">
+        <div><Workflow size={19} /><span><strong>Understand</strong><small>Workshops · requirements · design</small></span><em>01</em></div>
+        <div><Code2 size={19} /><span><strong>Integrate</strong><small>Maximo · Java · OSLC / REST</small></span><em>02</em></div>
+        <div><Server size={19} /><span><strong>Operate</strong><small>Containers · CI/CD · infrastructure</small></span><em>03</em></div>
+      </div><div className="system-bottom"><i className="status-dot" /> BUSINESS CONTEXT. TECHNICAL OWNERSHIP.</div>
+    </aside></div>
+    <div className="hero-evidence"><div><strong>3+ years</strong><span>Professional experience</span></div><div><strong>SUEZ France</strong><span>Maximo assignment · 2023–2025</span></div><div><strong>Sinorfi</strong><span>Full-Stack & DevOps · 2025–present</span></div><a href="#about">The short version <ArrowDown size={17} /></a></div>
+  </section>;
 }

@@ -8,14 +8,6 @@ export default defineConfig({
     sourcemap: false,
     target: 'es2020',
     minify: 'esbuild',
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          three: ['three'],
-          motion: ['framer-motion'],
-        },
-      },
-    },
   },
   server: { port: 5173, host: true },
 });

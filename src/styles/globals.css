@@ -1,50 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
-
 :root {
-  --bg:         #0A0908;
-  --bg-elev:    #1C1916;
-  --fg:         #FAF6F1;
-  --fg-muted:   #7A7269;
-  --fg-dim:     #3A342D;
+  --bg:         #07080A;
+  --surface:    #0F1117;
+  --fg:         #F0EDE8;
+  --fg-muted:   #6B6460;
+  --fg-dim:     #3A3530;
   --accent:     #89B4FA;
   --accent-2:   #74C7EC;
   --status:     #22C55E;
-  --border:     rgba(255,255,255,0.06);
-  --border-hi:  rgba(137,180,250,0.32);
+  --border:     rgba(137,180,250,0.12);
+  --border-hi:  rgba(137,180,250,0.4);
   --font-display: "Space Grotesk", system-ui, sans-serif;
-  --font-body:    "Inter", system-ui, sans-serif;
   --font-mono:    "JetBrains Mono", ui-monospace, monospace;
 }
 
 html, body { margin: 0; padding: 0; }
 body {
-  background: #0A0908;
-  color: #FAF6F1;
-  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-display);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-::selection { background: #89B4FA; color: #0A0908; }
+::selection { background: #89B4FA; color: #07080A; }
 
 html { scroll-behavior: smooth; }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(137,180,250,0.2); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(137,180,250,0.4); }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(137,180,250,0.35); border-radius: 2px; }
+
+/* ── Animations ── */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+@keyframes barGrow { from { width: 0; } }
+
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.marquee-inner {
+  display: flex;
+  animation: marquee 22s linear infinite;
+  white-space: nowrap;
+}
+.marquee-inner:hover { animation-play-state: paused; }
+
+@keyframes scanline { 0%{top:-2px} 100%{top:100%} }
+.scanline-sweep {
+  position: fixed; left: 0; right: 0; height: 2px; z-index: 9999;
+  background: linear-gradient(transparent, rgba(137,180,250,0.06) 50%, transparent);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+}
+
+/* Dot-grid background */
+.grid-bg {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(137,180,250,0.12) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 100%);
+}
+
+/* Corner brackets */
+.corner { position: absolute; width: 16px; height: 16px; }
+.corner-tl { top: 0; left: 0; border-top: 1px solid; border-left: 1px solid; }
+.corner-tr { top: 0; right: 0; border-top: 1px solid; border-right: 1px solid; }
+.corner-bl { bottom: 0; left: 0; border-bottom: 1px solid; border-left: 1px solid; }
+.corner-br { bottom: 0; right: 0; border-bottom: 1px solid; border-right: 1px solid; }
+
+/* Glitch hover on name */
+@keyframes glitch-1 {
+  0%,96%,100%{clip-path:inset(0)}
+  97%{clip-path:inset(10% 0 60% 0);transform:translateX(-3px)}
+  98%{clip-path:inset(50% 0 20% 0);transform:translateX(3px)}
+  99%{clip-path:inset(30% 0 40% 0);transform:translateX(-2px)}
+}
+.glitch-text:hover { animation: glitch-1 3s infinite; }
+
+/* Pulse dot ring */
+@keyframes pulse-ring { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(2.4);opacity:0} }
+.pulse-dot::after {
+  content:''; position:absolute; inset:0; border-radius:50%;
+  background:currentColor;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Magnetic button shimmer */
+.mag-btn { position:relative; overflow:hidden; transition: all .2s ease; }
+.mag-btn::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,.15) 50%, transparent 70%);
+  transform: translateX(-100%); transition: transform .6s ease;
+}
+.mag-btn:hover::before { transform: translateX(100%); }
+
+/* Float animation */
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+.float-anim { animation: float 3s ease-in-out infinite; }
+
+/* Intro screen grid */
+@keyframes intro-grid { 0%{background-position:0 0} 100%{background-position:40px 40px} }
+.intro-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(137,180,250,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(137,180,250,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: intro-grid 8s linear infinite;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+/* Intro line-in */
+@keyframes line-in { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
+.intro-line { animation: line-in .25s ease both; }
+
+/* ASCII name glow */
+@keyframes ascii-glow {
+  0%,100%{text-shadow:0 0 10px rgba(137,180,250,0.4)}
+  50%{text-shadow:0 0 20px rgba(137,180,250,0.7), 0 0 40px rgba(137,180,250,0.3)}
+}
+.ascii-glow { animation: ascii-glow 2.5s ease-in-out infinite; }
+
+/* Enter button pulse */
+@keyframes enter-button-glow {
+  0%,100%{box-shadow:0 0 0 0 rgba(137,180,250,0.6)}
+  70%{box-shadow:0 0 0 18px rgba(137,180,250,0)}
+}
+.enter-button { animation: enter-button-glow 2s ease-out infinite; }
+
+/* Skill bar animation */
+@keyframes barGrow { from { width: 0; } }
+.skill-bar-fill { animation: barGrow 1.2s cubic-bezier(.16,1,.3,1) both; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-@font-face {
-  font-display: swap;
 }

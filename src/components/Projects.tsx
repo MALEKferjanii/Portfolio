@@ -1,106 +1,17 @@
-import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
-import SectionHeader from './ui/SectionHeader';
-import { projects } from '../data/resume';
-
+import { useState } from 'react';
+import { ArrowUpRight, Plus } from 'lucide-react';
+import profile from '../data/profile.json';
+const filters = ['All work', 'Enterprise', 'Cloud & DevOps'];
 export default function Projects() {
-  return (
-    <section
-      id="projects"
-      className="relative z-10 py-32 md:py-40"
-      style={{ background: 'rgba(28,25,22,0.18)' }}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <SectionHeader
-          num="04 / 06"
-          path="~/src/components/Projects.tsx"
-          label="projects"
-          title={
-            <>
-              Selected{' '}
-              <span style={{ color: 'var(--accent-2)', fontWeight: 400 }}>
-                work.
-              </span>
-            </>
-          }
-        />
-
-        <div className="divide-y" style={{ borderTop: '1px solid var(--border)', borderColor: 'var(--border)' }}>
-          {projects.map((project, i) => {
-            const accentColor = project.accent === 'accent-2' ? 'var(--accent-2)' : 'var(--accent)';
-            return (
-              <motion.div
-                key={project.num}
-                className="group grid grid-cols-12 gap-4 md:gap-6 py-6 md:py-8 items-start cursor-pointer"
-                style={{ borderColor: 'var(--border)' }}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: i * 0.07 }}
-                viewport={{ once: true }}
-              >
-                {/* Number */}
-                <div className="col-span-1">
-                  <span
-                    className="font-mono text-sm tabular-nums"
-                    style={{ color: accentColor }}
-                  >
-                    {project.num}/
-                  </span>
-                </div>
-
-                {/* Title + blurb */}
-                <div className="col-span-11 md:col-span-6">
-                  <div className="font-mono text-xs text-muted mb-2">
-                    ~/projects/{project.slug}
-                  </div>
-                  <h3
-                    className="font-display font-medium text-lg md:text-xl text-fg mb-2 group-hover:text-white transition-colors"
-                    style={{ letterSpacing: '-0.015em' }}
-                  >
-                    {project.title}
-                  </h3>
-                  <p
-                    className="font-body text-sm leading-relaxed"
-                    style={{ color: 'var(--fg)', opacity: 0.7 }}
-                  >
-                    {project.blurb}
-                  </p>
-                </div>
-
-                {/* Tags */}
-                <div className="col-span-10 md:col-span-4 flex flex-wrap gap-2 md:justify-end">
-                  {project.tags.map(tag => (
-                    <span
-                      key={tag}
-                      className="font-mono text-[10px] px-2 py-1 rounded"
-                      style={{
-                        background: 'rgba(137,180,250,0.04)',
-                        border: '1px solid rgba(137,180,250,0.14)',
-                        color: 'var(--fg-muted)',
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Arrow */}
-                <div className="col-span-2 md:col-span-1 flex justify-end">
-                  <div
-                    className="w-9 h-9 flex items-center justify-center rounded transition-all group-hover:border-accent"
-                    style={{
-                      border: '1px solid var(--border)',
-                      color: 'var(--fg-muted)',
-                    }}
-                  >
-                    <ArrowUpRight size={14} />
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
+  const [active, setActive] = useState('All work');
+  const projects = profile.projects.filter(p => active === 'All work' || p.category === active);
+  return <section id="projects" className="section container"><div className="section-heading"><p className="eyebrow">03 / Selected work</p><h2>Built to connect.<br /><span>Built to keep learning.</span></h2><p>Professional integration work and personal platforms, with a clear view of what I contributed.</p></div>
+    <div className="project-toolbar"><div className="filters" aria-label="Filter projects">{filters.map(f => <button key={f} aria-pressed={f === active} onClick={() => setActive(f)}>{f}</button>)}</div><span aria-live="polite" className="result-count">{projects.length} projects</span></div>
+    <div className="projects-grid">{projects.map(p => <article key={p.id} className="project-card">
+      <div className="project-top"><span>{p.category}</span><span className={p.status === 'In progress' ? 'tag progress' : 'tag'}>{p.status}</span></div>
+      <div className={'project-visual visual-' + p.id} aria-hidden="true">{p.id === 'oslc' ? <><span>MAXIMO</span><i>← OSLC / REST →</i><span>WEB APP</span></> : p.id === 'openstack' ? <><span>CONTROL</span><div className="node-branches"><span>NODE 01</span><span>NODE 02</span><span>NODE 03</span></div></> : p.id === 'k3s' ? <><span>K3s</span><i>↗</i><span>WEB + LOCAL AI</span></> : <><span>CODE</span><i>→</i><span>POLICY</span><i>→</i><span>CLUSTER</span></>}</div>
+      <h3>{p.title}</h3><p>{p.summary}</p><div className="tags">{p.tags.map(t => <span className="tag" key={t}>{t}</span>)}</div>
+      <details><summary>Read project details <Plus size={16} /></summary><div className="project-detail"><h4>My contribution</h4><p>{p.contribution}</p><h4>Why it matters</h4><p>{p.purpose}</p><a href={'mailto:' + profile.email + '?subject=' + encodeURIComponent('Let’s discuss: ' + p.title)}>Discuss this project <ArrowUpRight size={14} /></a></div></details>
+    </article>)}</div>
+  </section>;
 }
